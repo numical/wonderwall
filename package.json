@@ -1,0 +1,39 @@
+{
+  "name": "wonderwall",
+  "version": "0.0.1",
+  "description": "Step-by-step to a video wall",
+  "main": "index.js",
+  "config": {
+    "ftp_user": "set in .npmrc",
+    "ftp_password": "set in .npmrc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "echo \"Building...\"",
+    "build": "npm run build:clean -s && npm run build:copy -s",
+    "build:clean": "echo \"Cleaning build directory\" && rm -rf ./build && mkdir ./build",
+    "build:copy": "echo \"Copying static assets\" && cp ./static/* ./build/",
+    "postbuild": "echo \"Built.\"",
+    "predeploy": "npm run build && echo \"Deploying...\"",
+    "deploy": "ftpsync --local ./build --remote /public/wonderwall --host ftp.phx.nearlyfreespeech.net --port 21 --user $npm_package_config_ftp_user --pass $npm_package_config_ftp_password",
+    "postdeploy": "echo \"Deployed.\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/numical/wonderwall.git"
+  },
+  "keywords": [
+    "react",
+    "video",
+    "tutorial"
+  ],
+  "author": "Mike Evans (mike.evans@numical.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/numical/wonderwall/issues"
+  },
+  "homepage": "https://github.com/numical/wonderwall#readme",
+  "devDependencies": {
+    "ftpsync": "^0.1.10"
+  }
+}
