@@ -8,11 +8,15 @@
     "ftp_password": "set in .npmrc"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prebuild": "echo \"Building...\"",
-    "build": "npm run build:clean -s && npm run build:copy -s",
-    "build:clean": "echo \"Cleaning build directory\" && rm -rf ./build && mkdir ./build",
-    "build:copy": "echo \"Copying static assets\" && cp ./static/* ./build/",
+    "pretest": "echo \"Testing...\"",
+    "test": "npm run test:lint",
+    "test:lint": "echo \" Linting\" &&semistandard",
+    "posttest": "echo \"Tested.\"",
+    "prebuild": "npm run test && echo \"Building...\"",
+    "build": "npm run build:clean -s && npm run build:copy -s && npm run build:bundle",
+    "build:clean": "echo \" Cleaning build directory\" && rm -rf ./build && mkdir ./build",
+    "build:copy": "echo \" Copying static assets\" && cp ./static/* ./build/",
+    "build:bundle": "echo \" Bundling assets\" && webpack",
     "postbuild": "echo \"Built.\"",
     "predeploy": "npm run build && echo \"Deploying...\"",
     "deploy": "ftpsync --local ./build --remote /public/wonderwall --host ftp.phx.nearlyfreespeech.net --port 21 --user $npm_package_config_ftp_user --pass $npm_package_config_ftp_password",
@@ -34,6 +38,8 @@
   },
   "homepage": "https://github.com/numical/wonderwall#readme",
   "devDependencies": {
-    "ftpsync": "^0.1.10"
+    "ftpsync": "^0.1.10",
+    "semistandard": "^9.1.0",
+    "webpack": "^2.1.0-beta.25"
   }
 }
