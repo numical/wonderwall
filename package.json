@@ -20,7 +20,8 @@
     "postbuild": "echo \"Built.\"",
     "predeploy": "npm run build && echo \"Deploying...\"",
     "deploy": "ftpsync --local ./build --remote /public/wonderwall --host ftp.phx.nearlyfreespeech.net --port 21 --user $npm_package_config_ftp_user --pass $npm_package_config_ftp_password",
-    "postdeploy": "echo \"Deployed.\""
+    "postdeploy": "echo \"Deployed.\"",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
   "devDependencies": {
     "ftpsync": "^0.1.10",
     "semistandard": "^9.1.0",
-    "webpack": "^2.1.0-beta.25"
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-server": "^2.1.0-beta.10"
   }
 }
