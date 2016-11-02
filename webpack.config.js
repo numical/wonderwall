@@ -10,6 +10,11 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
+  module: {
+    loaders: [
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
+    ]
+  },
   devServer: {
     hot: true,
     contentBase: './build'
