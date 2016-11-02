@@ -1,1 +1,1 @@
-document.write('My webapp says Hello World!');
+document.write('<div>Hello World!</div>');
