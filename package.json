@@ -25,7 +25,7 @@
     "predeploy": "npm run build && echo \"Deploying...\"",
     "deploy": "ftpsync --local ./build --remote /public/wonderwall --host ftp.phx.nearlyfreespeech.net --port 21 --user $npm_package_config_ftp_user --pass $npm_package_config_ftp_password",
     "postdeploy": "echo \"Deployed.\"",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --no-info --env dev"
   },
   "repository": {
     "type": "git",
@@ -52,7 +52,7 @@
     "ftpsync": "^0.1.10",
     "mocha": "^3.1.2",
     "npm-run-all": "^3.1.1",
-    "selenium-webdriver": "^3.0.0-beta-3",
+    "selenium-webdriver": "^3.0.0",
     "semistandard": "^9.1.0",
     "webpack": "^2.1.0-beta.25",
     "webpack-dev-server": "^2.1.0-beta.10"
