@@ -1,10 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-const App = function () {
-  return (
-    <div>Hello World!</div>
-  );
-};
+import App from './js/components/app/index.js';
 
 ReactDOM.render(<App />, document.getElementById('app'));
