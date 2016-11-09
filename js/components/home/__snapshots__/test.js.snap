@@ -1,0 +1,5 @@
+exports[`Home Page  should match previous snapshot 1`] = `
+<div>
+  Hello World!
+</div>
+`;

@@ -11,7 +11,7 @@ module.exports = (options) => {
 
 function baseConfig (options) {
   return {
-    entry: './app.js',
+    entry: './js/app.js',
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: 'bundle.js'
