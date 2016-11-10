@@ -12,6 +12,7 @@
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "echo \" Linting\" &&semistandard",
     "test:unit": "echo \" Units testing \" && jest",
+    "test:unit:reset": "echo \" Units testing \" && jest -u",
     "posttest": "echo \"Tested.\"",
     "prebuild": "npm run test && echo \"Building...\"",
     "build": "npm run build:clean -s && npm run build:copy -s && npm run build:bundle",
@@ -25,7 +26,7 @@
     "predeploy": "npm run build && echo \"Deploying...\"",
     "deploy": "ftpsync --local ./build --remote /public/wonderwall --host ftp.phx.nearlyfreespeech.net --port 21 --user $npm_package_config_ftp_user --pass $npm_package_config_ftp_password",
     "postdeploy": "echo \"Deployed.\"",
-    "start": "webpack-dev-server --no-info --env dev"
+    "start": "webpack-dev-server --no-info --env dev --history-api-fallback"
   },
   "repository": {
     "type": "git",
@@ -69,7 +70,6 @@
     "react-router": "^3.0.0"
   },
   "jest": {
-    "bail": true,
     "testRegex": "./js/.*test.js$"
   }
 }

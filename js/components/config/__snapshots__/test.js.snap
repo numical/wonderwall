@@ -1,5 +1,14 @@
 exports[`Config Page  should match previous snapshot 1`] = `
 <div>
-  Config Page
+  <div
+    className="page-title">
+    Config Page
+  </div>
+  <Link
+    onlyActiveOnIndex={false}
+    style={Object {}}
+    to="/">
+    Back to Wall
+  </Link>
 </div>
 `;

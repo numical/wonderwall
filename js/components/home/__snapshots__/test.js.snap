@@ -1,5 +1,14 @@
 exports[`Home Page  should match previous snapshot 1`] = `
 <div>
-  Hello World!
+  <div
+    className="page-title">
+    Hello World!
+  </div>
+  <Link
+    onlyActiveOnIndex={false}
+    style={Object {}}
+    to="/config">
+    Configure
+  </Link>
 </div>
 `;
