@@ -17,40 +17,50 @@ function getText (locator) {
 describe('Acceptance Test ', function () {
   this.timeout(5000);
 
-  before((done) => {
-    driver
-      .navigate().to('http://localhost:8080')
-      .then(done);
+  describe('Home Page ', function () {
+    before((done) => {
+      driver
+        .navigate().to('http://localhost:8080')
+        .then(done);
+    });
+
+    it('says Hello World!', function *() {
+      const locator = By.className('page-title');
+      wait(locator);
+      expect(yield getText(locator)).to.equal('Hello World!');
+    });
+
+    it('can navigate to Config Page', function *() {
+      const linkLocator = By.linkText('Configure');
+      const titleLocator = By.className('page-title');
+      wait(linkLocator);
+      driver.findElement(linkLocator).click();
+      wait(titleLocator);
+      expect(yield getText(titleLocator)).to.equal('Config Page');
+    });
   });
 
-  it('Home Page says Hello World!', function *() {
-    const locator = By.className('page-title');
-    wait(locator);
-    expect(yield getText(locator)).to.equal('Hello World!');
-  });
+  describe('Config Page', function () {
+    before((done) => {
+      driver
+        .navigate().to('http://localhost:8080/config')
+        .then(done);
+    });
 
-  it('Home Page can navigate to Config Page', function *() {
-    const linkLocator = By.linkText('Configure');
-    const titleLocator = By.className('page-title');
-    wait(linkLocator);
-    driver.findElement(linkLocator).click();
-    wait(titleLocator);
-    expect(yield getText(titleLocator)).to.equal('Config Page');
-  });
+    it('can be navigated to by URL', function *() {
+      const locator = By.className('page-title');
+      wait(locator);
+      expect(yield getText(locator)).to.equal('Config Page');
+    });
 
-  it('Config Page says Config Page', function *() {
-    const locator = By.className('page-title');
-    wait(locator);
-    expect(yield getText(locator)).to.equal('Config Page');
-  });
-
-  it('Config Page can navigate to Home Page', function *() {
-    const linkLocator = By.linkText('Back to Wall');
-    const titleLocator = By.className('page-title');
-    wait(linkLocator);
-    driver.findElement(linkLocator).click();
-    wait(titleLocator);
-    expect(yield getText(titleLocator)).to.equal('Hello World!');
+    it('can navigate to Home Page', function *() {
+      const linkLocator = By.linkText('Back to Wall');
+      const titleLocator = By.className('page-title');
+      wait(linkLocator);
+      driver.findElement(linkLocator).click();
+      wait(titleLocator);
+      expect(yield getText(titleLocator)).to.equal('Hello World!');
+    });
   });
 
   after((done) => {

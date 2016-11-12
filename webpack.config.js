@@ -36,7 +36,8 @@ function devConfig (options) {
     ],
     devServer: {
       hot: true,
-      contentBase: './build'
+      contentBase: './build',
+      historyApiFallback: true
     }
   };
 }

@@ -1,0 +1,14 @@
+exports[`Not Found Page  should match previous snapshot 1`] = `
+<div>
+  <div
+    className="page-title">
+    Page Not Found
+  </div>
+  <Link
+    onlyActiveOnIndex={false}
+    style={Object {}}
+    to="/">
+    Back to Wall
+  </Link>
+</div>
+`;

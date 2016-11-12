@@ -17,16 +17,17 @@
     "prebuild": "npm run test && echo \"Building...\"",
     "build": "npm run build:clean -s && npm run build:copy -s && npm run build:bundle",
     "build:clean": "echo \" Cleaning build directory\" && rm -rf ./build && mkdir ./build",
-    "build:copy": "echo \" Copying static assets\" && cp ./static/* ./build/",
+    "build:copy": "echo \" Copying static assets\" && cp -r ./static/. ./build/",
     "build:bundle": "echo \" Bundling assets\" && webpack",
     "postbuild": "echo \"Built.\" && npm run test:acceptance",
-    "test:acceptance": "echo \"Running acceptance tests\" && npm-run-all --parallel --race test:acceptance:startHttpServer test:acceptance:runSeleniumTests",
-    "test:acceptance:startHttpServer": "http-server ./build -s -p 8080",
+    "test:acceptance": "echo \"Running acceptance tests\" && npm-run-all --parallel --race test:acceptance:startSuperstatic test:acceptance:runSeleniumTests",
+    "test:acceptance:startSuperstatic": "superstatic -p 8080",
     "test:acceptance:runSeleniumTests": "mocha --require co-mocha",
     "predeploy": "npm run build && echo \"Deploying...\"",
     "deploy": "ftpsync --local ./build --remote /public/wonderwall --host ftp.phx.nearlyfreespeech.net --port 21 --user $npm_package_config_ftp_user --pass $npm_package_config_ftp_password",
+    "deploy:nobuild": "ftpsync --local ./build --remote /public/wonderwall --host ftp.phx.nearlyfreespeech.net --port 21 --user $npm_package_config_ftp_user --pass $npm_package_config_ftp_password",
     "postdeploy": "echo \"Deployed.\"",
-    "start": "webpack-dev-server --no-info --env dev --history-api-fallback"
+    "start": "webpack-dev-server --no-info --env dev"
   },
   "repository": {
     "type": "git",
@@ -61,6 +62,7 @@
     "react-addons-test-utils": "^15.3.2",
     "selenium-webdriver": "^3.0.1",
     "semistandard": "^9.1.0",
+    "superstatic": "^4.0.3",
     "webpack": "^2.1.0-beta.25",
     "webpack-dev-server": "^2.1.0-beta.10"
   },
