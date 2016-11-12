@@ -63,6 +63,29 @@ describe('Acceptance Test ', function () {
     });
   });
 
+  describe('Not Found Page', function () {
+    before((done) => {
+      driver
+        .navigate().to('http://localhost:8080/xyz')
+        .then(done);
+    });
+
+    it('is navigated to if no page found', function *() {
+      const locator = By.className('page-title');
+      wait(locator);
+      expect(yield getText(locator)).to.equal('Page Not Found');
+    });
+
+    it('can navigate to Home Page', function *() {
+      const linkLocator = By.linkText('Back to Wall');
+      const titleLocator = By.className('page-title');
+      wait(linkLocator);
+      driver.findElement(linkLocator).click();
+      wait(titleLocator);
+      expect(yield getText(titleLocator)).to.equal('Hello World!');
+    });
+  });
+
   after((done) => {
     driver
       .quit()
