@@ -1,6 +1,10 @@
 {
   "public": "build",
+  "trailingSlash": false,
   "rewrites": [
+    {
+      "source": "**/bundle.js", "destination": "/bundle.js"
+    },
     {
       "source": "**", "destination": "/index.html"
     }

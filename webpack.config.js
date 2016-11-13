@@ -1,12 +1,18 @@
 const path = require('path');
 const webpack = require('webpack');
 const DEV = 'dev';
+const DEBUG = 'debug';
 
 module.exports = (options) => {
   const config = baseConfig(options);
-  return (DEV === options)
-    ? Object.assign(config, devConfig(options))
-    : Object.assign(config, prodConfig(options));
+  switch (options) {
+    case DEV:
+      return Object.assign(config, devConfig(options));
+    case DEBUG:
+      return Object.assign(config, debugConfig(options));
+    default:
+      return Object.assign(config, prodConfig(options));
+  }
 };
 
 function baseConfig (options) {
@@ -14,7 +20,8 @@ function baseConfig (options) {
     entry: './js/app.js',
     output: {
       path: path.resolve(__dirname, 'build'),
-      filename: 'bundle.js'
+      filename: 'bundle.js',
+      publicPath: '/wonderwall/'
     },
     module: {
       loaders: [
@@ -39,6 +46,12 @@ function devConfig (options) {
       contentBase: './build',
       historyApiFallback: true
     }
+  };
+}
+
+function debugConfig (options) {
+  return {
+    devtool: 'source-map'
   };
 }
 

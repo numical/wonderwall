@@ -20,7 +20,7 @@ describe('Acceptance Test ', function () {
   describe('Home Page ', function () {
     before((done) => {
       driver
-        .navigate().to('http://localhost:8080')
+        .navigate().to('http://localhost:8080/wonderwall')
         .then(done);
     });
 
@@ -43,7 +43,7 @@ describe('Acceptance Test ', function () {
   describe('Config Page', function () {
     before((done) => {
       driver
-        .navigate().to('http://localhost:8080/config')
+        .navigate().to('http://localhost:8080/wonderwall/config')
         .then(done);
     });
 
@@ -51,6 +51,29 @@ describe('Acceptance Test ', function () {
       const locator = By.className('page-title');
       wait(locator);
       expect(yield getText(locator)).to.equal('Config Page');
+    });
+
+    it('can navigate to Home Page', function *() {
+      const linkLocator = By.linkText('Back to Wall');
+      const titleLocator = By.className('page-title');
+      wait(linkLocator);
+      driver.findElement(linkLocator).click();
+      wait(titleLocator);
+      expect(yield getText(titleLocator)).to.equal('Hello World!');
+    });
+  });
+
+  describe('Not Found Page', function () {
+    before((done) => {
+      driver
+        .navigate().to('http://localhost:8080/wonderwall/xyz')
+        .then(done);
+    });
+
+    it('is navigated when unknown url', function *() {
+      const locator = By.className('page-title');
+      wait(locator);
+      expect(yield getText(locator)).to.equal('Page Not Found');
     });
 
     it('can navigate to Home Page', function *() {

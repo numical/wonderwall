@@ -23,9 +23,9 @@
   RewriteCond %{REQUEST_FILENAME} !-d
 
   # and we are not opening the root already (otherwise we get a redirect loop)
-  RewriteCond %{REQUEST_FILENAME} !\/$
+  RewriteCond %{REQUEST_FILENAME} !\/wonderwall/$
 
   # Rewrite all requests to the root
-  RewriteRule ^(.*) /
+  RewriteRule ^(.*) /wonderwall/
 
 </ifModule>

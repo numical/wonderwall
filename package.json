@@ -19,6 +19,7 @@
     "build:clean": "echo \" Cleaning build directory\" && rm -rf ./build && mkdir ./build",
     "build:copy": "echo \" Copying static assets\" && cp -r ./static/. ./build/",
     "build:bundle": "echo \" Bundling assets\" && webpack",
+    "build:debug": "echo \" Debug Build\" && webpack --env debug",
     "postbuild": "echo \"Built.\" && npm run test:acceptance",
     "test:acceptance": "echo \"Running acceptance tests\" && npm-run-all --parallel --race test:acceptance:startSuperstatic test:acceptance:runSeleniumTests",
     "test:acceptance:startSuperstatic": "superstatic -p 8080",
